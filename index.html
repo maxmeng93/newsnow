@@ -40,12 +40,36 @@
   </script>
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL9HHYE5LC"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-EL9HHYE5LC');
+    // 获取 Google Analytics ID
+    const GA_ID = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+    if (GA_ID) {
+      // 动态加载 Google Analytics
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+      document.head.appendChild(script);
+      
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    }
+  </script>
+
+  <!-- 百度统计 -->
+  <script>
+    // 获取百度统计 ID
+    const BAIDU_ID = import.meta.env.VITE_BAIDU_ANALYTICS_ID;
+    if (BAIDU_ID) {
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = `https://hm.baidu.com/hm.js?${BAIDU_ID}`;
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    }
   </script>
 
   <script>
